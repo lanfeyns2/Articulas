@@ -7,6 +7,7 @@
 
 #include "LayerStack.h"
 #include "EventManager.h"
+#include "SceneManager.h"
 
 #include "Events/KeyDown.h"
 

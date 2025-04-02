@@ -1,6 +1,7 @@
 #pragma once
 
 #include <apch.h>
+#include "../core/Logging.h"
 
 namespace Articulas
 {
@@ -10,12 +11,24 @@ namespace Articulas
 		FileStreamer(const char* path, bool mode)
 			: m_path(path),m_mode(mode)
 		{
-
+            if (std::filesystem::exists(path))
+            {
+                isOpen = true;
+                std::string msg = std::string(path) + " Stream is open";
+                ENGINE_LOG_TRACE(msg.c_str());
+            }
+            else
+            {
+                std::string errmsg = std::string(path) + " Doesn't Exist";
+                ENGINE_LOG_ERROR(errmsg.c_str());
+            }
 		}
 
         template<typename T>
 		void Write(T data);
 		inline std::string Read(size_t start = 1,size_t offset = 0);
+    public:
+        bool isOpen = false;
 	private:
 		const char* m_path;
 		const bool m_mode;

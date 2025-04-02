@@ -14,7 +14,7 @@ namespace Articulas
 		{
 			if (action == GLFW_PRESS)
 			{
-				ENGINE_LOG_DEBUG("Got input");
+				ENGINE_LOG_TRACE("Input got");
 				EventHandler::AddToQueue(new Events::KeyDown(key));
 			}
 		}
@@ -27,11 +27,13 @@ namespace Articulas
 			glwindow = glfwCreateWindow(width, height, name, NULL, NULL);
 			if (!glwindow)
 			{
-				ENGINE_LOG_INFO("Gayy");
+				ENGINE_LOG_CRTICAL("COULDNT MAKE WINDOW");
 			}
 
 			glfwMakeContextCurrent(glwindow);
 			glfwSetKeyCallback(glwindow, key_callback);
+
+			ENGINE_LOG_TRACE("Window made");
 		}
 		
 		const Window& GetWindow(size_t index)
