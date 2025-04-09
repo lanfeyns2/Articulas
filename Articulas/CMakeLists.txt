@@ -1,2 +1,2 @@
 
-add_executable(Articulas "src/core/Application.cpp" "src/core/Application.h" "src/utils/FileStreamer.h")
+add_library(Articulas STATIC "src/core/Application.cpp" "src/core/Application.h" )
